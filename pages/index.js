@@ -1,24 +1,20 @@
-import fetch from 'node-fetch'
-import md5Hex from 'md5-hex'
-import Feed from '../components/feed'
+import { getFeeds } from '../lib/hn'
 
-function Index({ items }) {
-  return <Feed items={items} />
+export {default} from './_feed'
+
+export async function getStaticProps({ params }) {
+  return getFeeds('news')
 }
 
-export async function getStaticProps() {
-  const response = await fetch('http://api.hnpwa.com/v0/news/1.json', {
-    method: 'GET'
-  })
-  const items = await response.json()
-  const etag = md5Hex(JSON.stringify(items))
-
+export async function getStaticPaths() {
   return {
-    props: {
-      items,
-      etag
-    }
+    paths: ['newest', 'ask', 'show', 'jobs'].map(p => {
+      return {
+        params: {
+          slug: p
+        }
+      }
+    }),
+    fallback: false
   }
 }
-
-export default Index
