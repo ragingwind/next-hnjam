@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default ({ items }) => (
   <div>
-    <p>Hello, Next.js</p>
+    <p className="text-6xl font-bold">Hello, Next.js</p>
     <div>
       <Link href={'/'}>
         <a>News</a>
