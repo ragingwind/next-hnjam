@@ -3,3 +3,17 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+nav {
+  @apply fixed top-0 right-0 left-0 p-2 z-50;
+  @apply bg-black;
+}
+
+nav a {
+  @apply py-1 px-4;
+  @apply text-lg text-white;
+}
+
+nav a:hover {
+  @apply text-gray-400
+}
